@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <div id="app">{{text}}</div>
+    <div id="app"></div>
     <script>
+        const initialValue = 0;
         const vm = Vue.createApp({
-            data(){
-                return{
-                    text: " Hola vue"
+            data() {
+                return {
+                    
+                    counter: initialValue
                 };
-            }
+            }, methods: {
+                reset() {
+                    this.counter = initialValue;
+                },
+                increment() {
+                    this.counter++;
+                },
+                substract() {
+                    this.counter--;
+                },
+            }, template: `
+            <button v-on:click="reset">Reset</button>
+            <button v-on:click="increment">+</button>
+            <button v-on:click="substract">-</button>
+                <p>{{counter}}</p>
+                `
         }).mount("#app");
         console.log(vm)
-        
+
     </script>
 </body>
+
 </html>
